@@ -31,7 +31,13 @@ N is an integer within the range [0..100,000];
 the elements of A are all distinct;
 each element of array A is an integer within the range [1..(N + 1)]. """
 
+
 def solution(A):
+    
+    aux = list(range(1, len(A)+2))
+    return sum(aux) - sum(A) 
+
+def solution2(A):
    
     if(len(A) == 0): return 1
     
@@ -46,7 +52,7 @@ def solution(A):
     return sum_expected - sum_obtained
 
 
-def solution2(A):
+def solution3(A):
 
     sort = [i for i in range(len(A)+2)]
 

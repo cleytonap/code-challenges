@@ -32,7 +32,26 @@ Write an efficient algorithm for the following assumptions:
 N is an integer within the range [0..1,000,000];
 string S consists only of the characters "(" and/or ")". """
 
+
 def solution(S):
+    # write your code in Python 3.6
+    
+    if not S: return 1
+    count = 0
+
+    for c in S:
+        if c == '(':
+            count += 1
+        else:
+            if count == 0:
+                return 0
+            
+            count -= 1
+    
+    return 1 if count == 0 else 0
+    
+
+def solution1(S):
 
     if not S: return 1 #empty string
 

@@ -8,7 +8,7 @@
 
 # PERSONAL NOTE: Although I had spent few days trying, I could not find an answer
 # to this challenge all by myself.
-# I had to get the 'insight' to solve the problem from others. 
+# I had to get the 'insight' to solve the problem from others (search starting from both sides of the list). 
 # Only then I was able to write my own code.
 
 

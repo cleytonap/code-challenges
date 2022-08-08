@@ -53,7 +53,26 @@ each element of array A is an integer within the range [0..1,000,000,000];
 each element of array B is an integer that can have one of the following values: 0, 1;
 the elements of A are all distinct.
  """
-def solution(A, B): # TOTAL SCORE: 100%
+
+
+def solution(A, B):
+
+    goingRight = []
+    countLeft = 0
+    for size, direction in zip(A, B):
+
+        if direction == 1: # 1 ---> going right (downstream)
+            goingRight.append(size)
+        else: # 0 <--- going left (upstream)
+            while goingRight and size > goingRight[-1]:
+                goingRight.pop() #eat smaller fish going to the opposite direction
+            if not goingRight: #all fishes going right were eaten or there was no fish going right
+                countLeft += 1
+
+    return countLeft + len(goingRight)
+
+
+def solution1(A, B): # TOTAL SCORE: 100%
 
     group_going_ds = []
     count_fish = 0
@@ -81,36 +100,6 @@ def solution(A, B): # TOTAL SCORE: 100%
             group_going_ds.append(fish_size)
 
     return count_fish + len(group_going_ds)
-
-
-
-def solution1(A, B): # TOTAL SCORE: 87% (75% performance)
-
-    group_going_us = []
-    count_fish = 0
-
-    if len(A) == 1:
-        return 1
-
-    if(len(set(B)) == 1):
-        return len(A)
-
-    # <----------Upstream (0)           downstream (1)--------->
-    for i, (fish_size, fish_dir) in enumerate(zip(A, B)):
-
-        if fish_dir == 0:  # fish going upstream
-            for i, f in enumerate (group_going_us):
-                if f > fish_size:
-                    group_going_us = group_going_us[i:]    
-                    break
-            else: # only executes if break was not reached
-                count_fish += 1
-                group_going_us = []
-
-        else: # 1 - fish going downstream
-            group_going_us.insert(0, fish_size)
-
-    return count_fish + len(group_going_us)
 
 
 

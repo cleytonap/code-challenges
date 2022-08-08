@@ -49,6 +49,49 @@ N is an integer within the range [1..100,000];
 each element of array A is an integer within the range [−1,000,000,000..1,000,000,000].
  """
 
+
+
+
+def solution(A):
+    # write your code in Python 3.6
+    
+    def getLeader(arr):
+        count = 0
+        for a in arr:
+            if count == 0:
+                candidate = a
+                count = 1
+            else:
+                if a == candidate:
+                    count += 1
+                else:
+                    count -= 1
+        
+        count = arr.count(candidate)
+        if count > len(arr) / 2:
+            return count, candidate
+        return -1, -1
+
+    rightCount, leader = getLeader(A)
+    if rightCount == -1: return 0
+
+    leftCount = 0
+    n = len(A)
+    res = 0
+    for i in range(n - 1):
+        if A[i] == leader:
+            leftCount += 1
+            rightCount -= 1
+
+        if (leftCount > (i + 1) / 2) and (rightCount > (n - i - 1) / 2):
+            res += 1
+
+    return res
+
+
+
+
+
 def getLeader(A):
 
     counts = {}
@@ -78,7 +121,7 @@ def checkEquiLeader(left_i_size, right_i_size, count_left, count_right):
 
 # Find the index S such that the leaders of the sequences A[0], A[1], ..., A[S] and 
 # A[S + 1], A[S + 2], ..., A[N - 1] are the same.
-def solution(A):
+def solution1(A):
 
     if len(A) == 1: return 0
 

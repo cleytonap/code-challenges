@@ -43,7 +43,20 @@ For example, given:
   A[4] = 3
 the function should return 1, as explained above. """
 
+
 def solution(A):
+  
+    totalSum = sum(A)
+    leftSum = A[0]
+    min_diff = float('inf')
+    for i in range(1, len(A)):
+        rightSum = totalSum - leftSum
+        min_diff = min(min_diff, abs(leftSum - rightSum))
+        leftSum += A[i]
+
+    return min_diff
+
+def solution2(A):
 
     min = 9999999999999 #lazy
     right_sum = sum(A)

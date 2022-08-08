@@ -26,7 +26,15 @@ A and B are integers within the range [0..2,000,000,000];
 K is an integer within the range [1..2,000,000,000];
 A ≤ B. """
 
-def solution(A, B, K): 
+
+import math
+def solution(A, B, K): #Best solution
+    a = math.ceil(A / K)
+    b = B // K
+    return b - a + 1
+
+
+def solution2(A, B, K): #Total Score 100%
 
     i = A
 

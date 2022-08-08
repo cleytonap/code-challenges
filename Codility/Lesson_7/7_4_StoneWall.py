@@ -31,7 +31,28 @@ Write an efficient algorithm for the following assumptions:
 N is an integer within the range [1..100,000];
 each element of array H is an integer within the range [1..1,000,000,000]. """
 
+
 def solution(H):
+    height = 0
+    stack = []    
+    count = 0
+    for h in H:
+        if h > height: # __--
+            stack.append(h - height)
+            count += 1
+            height = height + stack[-1]
+        elif h < height: # --__
+            height -= stack.pop()
+            while h < height:
+                height -= stack.pop()
+            if h > height:
+                stack.append(h - height)
+                height = height + stack[-1]
+                count += 1    
+    return count
+
+
+def solution1(H):
 
     if len(H) == 1: return 1
 

@@ -40,7 +40,6 @@ def solution(N):
     return max_gap
 
 
-
 print(solution(16))
 print(solution(0))
 print(solution(1))
